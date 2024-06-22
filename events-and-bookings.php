@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: Events and Bookings
- * Description: Manage events and bookings with ease.
- * Version: 1.0
- * Author: Your Name
+ * Plugin Name: Events and Bookings - SRB
+ * Description: Fork of WPMUDEV Events+ - Manage events and bookings with ease.
+ * Version: 2.0
+ * Author: Sarah R. Barnes
  */
 
 namespace EventsAndBookings;
