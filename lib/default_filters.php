@@ -372,4 +372,5 @@ if (defined('EAB_OPTMIZIE_SCRIPT_LOAD') && EAB_OPTMIZIE_SCRIPT_LOAD) {
 // End script concatenation
 
 // Twitter delta threshold correction
-define('EAB_OAUTH_TIMESTAMP_DELTA_THRESHOLD', 10, true);
+define('EAB_OAUTH_TIMESTAMP_DELTA_THRESHOLD', 10);
+
