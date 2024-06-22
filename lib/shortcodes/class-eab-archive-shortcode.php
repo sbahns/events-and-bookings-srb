@@ -27,8 +27,9 @@ class Eab_Archive_Shortcode extends Eab_Codec {
 			$events = Eab_Network::get_archive_events( 30 );
 		} else {
 			$order_method = $this->args['order']
-				? create_function( '', 'return "' . $this->args['order'] . '";' )
-				: false;
+			? function () { return $this->args['order']; }
+			: false;
+
 
 			if ( $order_method ) {
 				add_filter( 'eab-collection-date_ordering_direction', $order_method );
@@ -36,8 +37,8 @@ class Eab_Archive_Shortcode extends Eab_Codec {
 
             if ( $this->args['end_date'] ) {
 			    $start = !empty($this->args['date']) ? $this->args['date'] : eab_current_time();
-			    $start_date = create_function( '', 'return "' . date('Y-m-d', $start) .' 00:00";');
-			    $end_date = create_function( '', 'return "' . date('Y-m-d', $this->args['end_date']) . ' 23:59";');
+				$start_date = function () use ($start) { return date('Y-m-d', $start) . ' 00:00'; };
+			    $end_date = function () { return date('Y-m-d', $this->args['end_date']) . ' 23:59'; };
 			    
 			    add_filter('eab-collection-date_range_start', $start_date);
 			    add_filter('eab-collection-date_range_end', $end_date); 
@@ -48,7 +49,7 @@ class Eab_Archive_Shortcode extends Eab_Codec {
 			    remove_filter( 'eab-collection-date_range_end', $end_date );
             } elseif ( $this->args['day_only']) {
 			    $date = !empty($this->args['date']) ? $this->args['date'] : eab_current_time();
-			    $ddate = create_function( '', 'return "' . date('Y-m-d', $date) .'";');
+			    $ddate = function () use ($date) { return date('Y-m-d', $date); };
 			    
 			    add_filter('eab-collection-daily_events_date', $ddate);
 
@@ -59,8 +60,8 @@ class Eab_Archive_Shortcode extends Eab_Codec {
 			    // Lookahead - depending on presence, use regular upcoming query, or poll week count
 			    if ( $this->args['lookahead'] ) {
 				    $method = $this->args['weeks']
-					    ? create_function( '', 'return ' . $this->args['weeks'] . ';' )
-					    : false;
+						? function () { return $this->args['weeks']; }
+						: false;
 
 				    if ( $method ) {
 					    add_filter( 'eab-collection-upcoming_weeks-week_number', $method );
