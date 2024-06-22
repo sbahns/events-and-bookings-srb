@@ -1574,7 +1574,8 @@
      return $opts;
  }
  
- define( 'EAB_PLUGIN_BASENAME', basename( dirname( __FILE__ ) ), true );
+ define( 'EAB_PLUGIN_BASENAME', basename( dirname( __FILE__ ) ) );
+
  define( 'EAB_PLUGIN_DIR', trailingslashit( plugin_dir_path( __FILE__ ) ) );
  define( 'EAB_PLUGIN_URL', trailingslashit( plugin_dir_url( __FILE__ ) ) );
  
@@ -1584,12 +1585,12 @@
      include_once( EAB_PLUGIN_DIR . 'lib/class-eab-ajax.php' );
  
  
- if ( !defined( 'EAB_OLD_EVENTS_EXPIRY_LIMIT' ) ) {
-     define( 'EAB_OLD_EVENTS_EXPIRY_LIMIT', 100, true );
- }
- if ( !defined( 'EAB_MAX_UPCOMING_EVENTS' ) ) {
-     define( 'EAB_MAX_UPCOMING_EVENTS', 500, true );
- }
+if ( !defined( 'EAB_OLD_EVENTS_EXPIRY_LIMIT' ) ) {
+    define( 'EAB_OLD_EVENTS_EXPIRY_LIMIT', 100 );
+}
+if ( !defined( 'EAB_MAX_UPCOMING_EVENTS' ) ) {
+    define( 'EAB_MAX_UPCOMING_EVENTS', 500 );
+}
  
  require_once EAB_PLUGIN_DIR . 'lib/class_eab_error_reporter.php';
  Eab_ErrorReporter::serve();
