@@ -48,6 +48,7 @@ class Eab_BuddyPress_MyEvents {
 	
 	function add_bp_profile_entry () {
 		global $bp;
+		$displayed_user_domain = isset($bp->displayed_user->domain) ? $bp->displayed_user->domain : '';
 		bp_core_new_nav_item(array(
 			'name' => __('Events', Eab_EventsHub::TEXT_DOMAIN),
 			'slug' => 'my-events',
@@ -59,7 +60,7 @@ class Eab_BuddyPress_MyEvents {
 			bp_core_new_subnav_item(array(
 				'name' => __('Organized', Eab_EventsHub::TEXT_DOMAIN),
 				'slug' => 'organized',
-				'parent_url' => $bp->displayed_user->domain . 'my-events' . '/',
+				'parent_url' => $displayed_user_domain . 'my-events' . '/',
 				'parent_slug' => 'my-events',
 				'screen_function' => array($this, 'bind_bp_organized_page'),
 			));
@@ -67,26 +68,26 @@ class Eab_BuddyPress_MyEvents {
 		bp_core_new_subnav_item(array(
 			'name' => __('Attending', Eab_EventsHub::TEXT_DOMAIN),
 			'slug' => 'attending',
-			'parent_url' => $bp->displayed_user->domain . 'my-events' . '/',
+			'parent_url' => $displayed_user_domain . 'my-events' . '/',
 			'parent_slug' => 'my-events',
 			'screen_function' => array($this, 'bind_bp_attending_page'),
 		));
 		bp_core_new_subnav_item(array(
 			'name' => __('Maybe', Eab_EventsHub::TEXT_DOMAIN),
-			'slug' => 'mabe',
-			'parent_url' => $bp->displayed_user->domain . 'my-events' . '/',
+			'slug' => 'maybe',
+			'parent_url' => $displayed_user_domain . 'my-events' . '/',
 			'parent_slug' => 'my-events',
 			'screen_function' => array($this, 'bind_bp_maybe_page'),
 		));
 		bp_core_new_subnav_item(array(
 			'name' => __('Not Attending', Eab_EventsHub::TEXT_DOMAIN),
 			'slug' => 'not-attending',
-			'parent_url' => $bp->displayed_user->domain . 'my-events' . '/',
+			'parent_url' => $displayed_user_domain . 'my-events' . '/',
 			'parent_slug' => 'my-events',
 			'screen_function' => array($this, 'bind_bp_not_attending_page'),
 		));
 		do_action('eab-events-my_events-set_up_navigation');
-	}
+	}	
 	
 	function bind_bp_organized_page () {
 		add_action('bp_template_title', array($this, 'show_organized_title'));
